@@ -1,0 +1,6 @@
+logging:
+    file: logs/logmonitor.log
+    level:
+        root: INFO
+logmonitor.execute.cron: "*/1 * * * * *" # 每秒钟执行一次
+logmonitor.logfile.paths: "D:\\dd\\log\\auto-sms.log;D:\\dd\\log\\auto-sms-error.log" # 日志文件路径，多个路径以“;”分割
