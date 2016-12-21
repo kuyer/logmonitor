@@ -1,8 +1,13 @@
 package io.github.kuyer.model;
 
+import java.io.RandomAccessFile;
 import java.io.Serializable;
 import java.util.Date;
 
+/**
+ * 日志信息
+ * @author rory.zhang
+ */
 public class LogInfoMdl implements Serializable {
 
 	private static final long serialVersionUID = -5558327920226484353L;
@@ -11,10 +16,14 @@ public class LogInfoMdl implements Serializable {
 	private String id;
 	/** 日志位置 **/
 	private String filePath;
+	/** 读取的文件 **/
+	private RandomAccessFile raFile;
 	/** 是否正在运行 **/
 	private boolean running;
 	/** 位置位置 **/
 	private long lastPosition;
+	/** 变更版本 **/
+	private long version;
 	/** 创建时间 **/
 	private Date createTime;
 	/** 修改时间 **/
@@ -32,6 +41,12 @@ public class LogInfoMdl implements Serializable {
 	public void setFilePath(String filePath) {
 		this.filePath = filePath;
 	}
+	public RandomAccessFile getRaFile() {
+		return raFile;
+	}
+	public void setRaFile(RandomAccessFile raFile) {
+		this.raFile = raFile;
+	}
 	public boolean isRunning() {
 		return running;
 	}
@@ -43,6 +58,12 @@ public class LogInfoMdl implements Serializable {
 	}
 	public void setLastPosition(long lastPosition) {
 		this.lastPosition = lastPosition;
+	}
+	public long getVersion() {
+		return version;
+	}
+	public void setVersion(long version) {
+		this.version = version;
 	}
 	public Date getCreateTime() {
 		return createTime;
@@ -59,8 +80,9 @@ public class LogInfoMdl implements Serializable {
 	
 	@Override
 	public String toString() {
-		return "LogInfoMdl [id=" + id + ", filePath=" + filePath + ", running=" + running + ", lastPosition="
-				+ lastPosition + ", createTime=" + createTime + ", updateTime=" + updateTime + "]";
+		return "LogInfoMdl [id=" + id + ", filePath=" + filePath + ", running=" + running
+				+ ", lastPosition=" + lastPosition + ", version=" + version + ", createTime=" + createTime
+				+ ", updateTime=" + updateTime + "]";
 	}
 
 }
