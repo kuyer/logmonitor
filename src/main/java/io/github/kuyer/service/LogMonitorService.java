@@ -20,6 +20,10 @@ import org.springframework.stereotype.Service;
 import io.github.kuyer.model.LogInfoMdl;
 import io.github.kuyer.util.SequenceUtil;
 
+/**
+ * 日志监控Service
+ * @author rory.zhang
+ */
 @Service
 public class LogMonitorService {
 	
@@ -32,13 +36,13 @@ public class LogMonitorService {
 	@Value("${logmonitor.logfile.paths}")
 	private String logFilePaths;
 	@Autowired
-	private LogHandService logHandService;
+	private LogHanderService logHanderService;
 	
 	@PostConstruct
 	public void init() {
 		logger.info("init logmonitor start.");
 		if(null==logFilePaths || logFilePaths.trim().equals("")) {
-			logger.warn("`logFilePaths` is empty, init fail.");
+			logger.warn("logFilePaths is empty, init fail.");
 			return;
 		}
 		logInfoMap = new HashMap<>();
@@ -88,8 +92,8 @@ public class LogMonitorService {
 		Iterator<Entry<String, LogInfoMdl>> iterator = logInfoMap.entrySet().iterator();
 		while(iterator.hasNext()) {
 			Entry<String, LogInfoMdl> entry = iterator.next();
-			if(null!=entry && null!=entry.getValue()) {
-				logHandService.handler(entry.getValue());
+			if(null!=entry && null!=entry.getValue() && !entry.getValue().isRunning()) {
+				logHanderService.handler(entry.getValue());
 			}
 		}
 	}

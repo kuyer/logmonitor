@@ -2,5 +2,10 @@ logging:
     file: logs/logmonitor.log
     level:
         root: INFO
-logmonitor.execute.cron: "*/1 * * * * *" # 每秒钟执行一次
-logmonitor.logfile.paths: "D:\\dd\\log\\auto-sms.log;D:\\dd\\log\\auto-sms-error.log" # 日志文件路径，多个路径以“;”分割
+logmonitor:
+    execute.cron: "*/1 * * * * *" # 每秒钟执行一次
+    logfile.paths: "D:\\dd\\log\\auto-sms.log;D:\\dd\\log\\auto-sms-error.log" # 日志文件路径，多个路径以“;”分割
+    words:
+        warn: "exception;error" # 告警词，多个以“;”分割
+        filter: "" # 过滤词，多个以“;”分割
+        shield: "" # 屏蔽词，多个以“;”分割

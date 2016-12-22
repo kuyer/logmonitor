@@ -3,6 +3,7 @@ package io.github.kuyer.model;
 import java.io.RandomAccessFile;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 日志信息
@@ -24,6 +25,12 @@ public class LogInfoMdl implements Serializable {
 	private long lastPosition;
 	/** 变更版本 **/
 	private long version;
+	/** 告警词 **/
+	private List<String> warnWords;
+	/** 过滤词 **/
+	private List<String> filterWords;
+	/** 屏蔽词 **/
+	private List<String> shieldWords;
 	/** 创建时间 **/
 	private Date createTime;
 	/** 修改时间 **/
@@ -65,6 +72,24 @@ public class LogInfoMdl implements Serializable {
 	public void setVersion(long version) {
 		this.version = version;
 	}
+	public List<String> getWarnWords() {
+		return warnWords;
+	}
+	public void setWarnWords(List<String> warnWords) {
+		this.warnWords = warnWords;
+	}
+	public List<String> getFilterWords() {
+		return filterWords;
+	}
+	public void setFilterWords(List<String> filterWords) {
+		this.filterWords = filterWords;
+	}
+	public List<String> getShieldWords() {
+		return shieldWords;
+	}
+	public void setShieldWords(List<String> shieldWords) {
+		this.shieldWords = shieldWords;
+	}
 	public Date getCreateTime() {
 		return createTime;
 	}
@@ -80,8 +105,9 @@ public class LogInfoMdl implements Serializable {
 	
 	@Override
 	public String toString() {
-		return "LogInfoMdl [id=" + id + ", filePath=" + filePath + ", running=" + running
-				+ ", lastPosition=" + lastPosition + ", version=" + version + ", createTime=" + createTime
+		return "LogInfoMdl [id=" + id + ", filePath=" + filePath + ", raFile=" + raFile + ", running=" + running
+				+ ", lastPosition=" + lastPosition + ", version=" + version + ", warnWords=" + warnWords
+				+ ", filterWords=" + filterWords + ", shieldWords=" + shieldWords + ", createTime=" + createTime
 				+ ", updateTime=" + updateTime + "]";
 	}
 
